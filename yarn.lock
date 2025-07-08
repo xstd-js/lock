@@ -695,12 +695,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.15.30":
-  version: 22.16.0
-  resolution: "@types/node@npm:22.16.0"
+"@types/node@npm:^24.0.10":
+  version: 24.0.10
+  resolution: "@types/node@npm:24.0.10"
   dependencies:
-    undici-types: "npm:~6.21.0"
-  checksum: 10c0/6219b521062f6c38d4d85ebd25807bd7f2bc703a5acba24e2c6716938d9d6cefd6fafd7b5156f61580eb58a0d82e8921751b778655675389631d813e5f261c03
+    undici-types: "npm:~7.8.0"
+  checksum: 10c0/11dbd869d3e12ee7b7818113588950e538783e45d227122174c763cb05977defbd1e01b44b5ccd4b8997e42c3df7f7b83c6ee05cfa43d924c8882886bc5f6582
   languageName: node
   linkType: hard
 
@@ -711,7 +711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-istanbul@npm:^3.2.2":
+"@vitest/coverage-istanbul@npm:^3.2.4":
   version: 3.2.4
   resolution: "@vitest/coverage-istanbul@npm:3.2.4"
   dependencies:
@@ -818,13 +818,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xstd/lock@workspace:."
   dependencies:
-    "@types/node": "npm:^22.15.30"
-    "@vitest/coverage-istanbul": "npm:^3.2.2"
-    prettier: "npm:^3.5.3"
+    "@types/node": "npm:^24.0.10"
+    "@vitest/coverage-istanbul": "npm:^3.2.4"
+    prettier: "npm:^3.6.2"
     prettier-plugin-organize-imports: "npm:^4.1.0"
-    typedoc: "npm:^0.28.5"
+    typedoc: "npm:^0.28.7"
     typescript: "npm:^5.8.3"
-    vitest: "npm:^3.2.2"
+    vitest: "npm:^3.2.4"
   languageName: unknown
   linkType: soft
 
@@ -1835,7 +1835,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.5.3":
+"prettier@npm:^3.6.2":
   version: 3.6.2
   resolution: "prettier@npm:3.6.2"
   bin:
@@ -2198,7 +2198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.28.5":
+"typedoc@npm:^0.28.7":
   version: 0.28.7
   resolution: "typedoc@npm:0.28.7"
   dependencies:
@@ -2242,10 +2242,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.21.0":
-  version: 6.21.0
-  resolution: "undici-types@npm:6.21.0"
-  checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
+"undici-types@npm:~7.8.0":
+  version: 7.8.0
+  resolution: "undici-types@npm:7.8.0"
+  checksum: 10c0/9d9d246d1dc32f318d46116efe3cfca5a72d4f16828febc1918d94e58f6ffcf39c158aa28bf5b4fc52f410446bc7858f35151367bd7a49f21746cab6497b709b
   languageName: node
   linkType: hard
 
@@ -2351,7 +2351,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^3.2.2":
+"vitest@npm:^3.2.4":
   version: 3.2.4
   resolution: "vitest@npm:3.2.4"
   dependencies:

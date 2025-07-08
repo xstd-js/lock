@@ -1,6 +1,6 @@
 {
   "name": "@xstd/lock",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "main": "./index.js",
   "scripts": {
@@ -24,17 +24,17 @@
     "url": "git+https://github.com/xstd-js/lock.git"
   },
   "devDependencies": {
-    "@types/node": "^22.15.30",
-    "@vitest/coverage-istanbul": "^3.2.2",
-    "prettier": "^3.5.3",
+    "@types/node": "^24.0.10",
+    "@vitest/coverage-istanbul": "^3.2.4",
+    "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "typedoc": "^0.28.5",
+    "typedoc": "^0.28.7",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.2"
+    "vitest": "^3.2.4"
   },
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
   "fabrique": {
-    "version": "0.3.8",
+    "version": "0.3.9",
     "type": "lib"
   }
 }

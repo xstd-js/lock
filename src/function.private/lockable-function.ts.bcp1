@@ -1,0 +1,112 @@
+import { GenericFunction } from '@xstd/functional';
+import { Locked } from '../locked.js';
+import { ReleaseFunction } from '../release-function.js';
+import { UnlockFunction } from '../unlock-function.js';
+
+export class LockableFunction<GFunction extends GenericFunction>  {
+  readonly #target: GFunction;
+  #locked: boolean;
+  #lock: Locked | undefined;
+
+  constructor(target: GFunction) {
+    this.#target = target;
+    this.#locked = false;
+  }
+
+  /**
+   * If this `Lockable` is locked or not.
+   */
+  get locked(): boolean {
+    return this.#locked;
+  }
+
+  /**
+   * Throws if this `Lockable` is locked.
+   */
+  throwIfLocked(): void {
+    if (this.#locked) {
+      throw new Error('Locked.');
+    }
+  }
+
+  /**
+   * Creates a lock on this `Lockable`:
+   *  - this `Lockable` is _locked_ until `Locked.release` is called
+   */
+  lock(): LockedFunction<GFunction> {
+    if (this.#lock === undefined) {
+      this.#locked = true;
+      return (this.#lock = new Locked(
+        <GReturn>(context: () => GReturn): GReturn => {
+          this.#locked = false;
+          try {
+            return context();
+          } finally {
+            this.#locked = true;
+          }
+        },
+        (): void => {
+          this.#locked = false;
+          this.#lock = undefined;
+        },
+      ));
+    } else {
+      throw new Error('A lock already exists. You must `release` it first.');
+    }
+  }
+}
+
+export type InferFunctionThis<GFunction extends (...args: any) => any> = GFunction extends (
+    this: infer GThis,
+    ...args: any[]
+  ) => any
+  ? GThis
+  : never;
+
+
+export class LockedFunction<GFunction extends (...args: any) => any> {
+  #target: GFunction;
+  #unlock: UnlockFunction;
+  #release: ReleaseFunction;
+  #released: boolean;
+
+  /**
+   * @private
+   */
+  constructor(target: GFunction, unlock: UnlockFunction, release: ReleaseFunction) {
+    this.#target = target;
+    this.#unlock = unlock;
+    this.#release = release;
+    this.#released = false;
+  }
+
+  get released(): boolean {
+    return this.#released;
+  }
+
+  apply(thisArgument: InferFunctionThis<GFunction>, argumentsList: Parameters<GFunction>): ReturnType<GFunction> {
+    if (this.#released) {
+      throw new Error('Released.');
+    }
+    return this.#unlock((): ReturnType<GFunction> => {
+      return Reflect.apply(this.#target, thisArgument, argumentsList);
+    });
+  }
+
+  /**
+   * Releases this `Locked`.
+   */
+  release(): void {
+    if (!this.#released) {
+      this.#released = true;
+      this.#release();
+    }
+  }
+
+  /**
+   * Disposes of this `Locked` (releases it).
+   */
+  [Symbol.dispose](): void {
+    this.release();
+  }
+}
